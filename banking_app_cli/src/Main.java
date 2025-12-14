@@ -1,6 +1,4 @@
-package programming_challenge.banking_app_leo;
-
-import static programming_challenge.banking_app_leo.display.UserDisplay.loginDisplay;
+import static display.UserDisplay.loginDisplay;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/banking_app_cli/banking_app_cli.iml" filepath="$PROJECT_DIR$/banking_app_cli/banking_app_cli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/banking_app_leo.iml" filepath="$PROJECT_DIR$/banking_app_leo.iml" />
+    </modules>
+  </component>
+</project>

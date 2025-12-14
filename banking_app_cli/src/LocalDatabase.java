@@ -1,12 +1,11 @@
-package programming_challenge.banking_app_leo;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-class LocalDatabase {
+public class LocalDatabase {
     private static String userAction;
-    void users(String userAction) {
+    public void users(String userAction) {
     ArrayList<UserType> users = new ArrayList<>();
         users.add(new UserType("Admin", new ArrayList<UserDetails>(){{
             add(new UserDetails("Admin1", "admin1@gmail.com", 432432, 0));

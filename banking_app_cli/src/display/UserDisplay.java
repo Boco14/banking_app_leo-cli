@@ -1,4 +1,4 @@
-package programming_challenge.banking_app_leo.display;
+package display;
 
 import java.util.Arrays;
 import java.util.Scanner;
