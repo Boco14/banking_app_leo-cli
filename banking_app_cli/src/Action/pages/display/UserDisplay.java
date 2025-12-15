@@ -35,7 +35,7 @@ public class UserDisplay {
     public static void inputWarningDisplay(){
         System.out.println("-- WRONG INPUT -- Please try again --");
     }
-    public static int authenticatedDisplay(){
+    public static void authenticatedDisplay(){
         String[] showDisplay = {
                 "==========================================================================",
                 "|| Choose an action:                                                    ||",
@@ -48,27 +48,5 @@ public class UserDisplay {
                 "==========================================================================",
         };
         Arrays.stream(showDisplay).forEach(System.out::println);
-        try{
-            System.out.print("Enter: ");
-            int userChoice = _SCAN.nextInt();
-            lineBreakDisplay();
-            return switch (userChoice) {
-                case 1 -> 1;
-                case 2 -> 2;
-                case 3 -> 3;
-                case 4 -> 4;
-                case 5 -> 5;
-                default -> repeat();
-            };
-        } catch (Exception InputMismatchException) {
-            inputWarningDisplay();
-            return 0;
-        }
-    }
-    static int repeat(){
-        System.out.print("Confirm, EXIT \nEnter y/n: ");
-        String repeat = _SCAN.next();
-        if(!repeat.equalsIgnoreCase("y")) return 1;
-        else return 0;
     }
 }

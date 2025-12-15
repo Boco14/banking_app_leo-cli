@@ -45,10 +45,10 @@ public class LocalDatabase {
             System.out.println("Login successful!");
             System.out.println("Welcome, " + user.getNAME().toUpperCase());
             System.out.println("Current balance: " + user.get_BALANCE());
-            lineBreakDisplay();
-            while (true){
-                /*pageController(userChoice);*/
-                if(authenticatedDisplay() == 0) break;
+            boolean repeat = true;
+            while (repeat){
+                authenticatedDisplay();
+                if(pageController() == 0) repeat = false;
             }
         } else {
             System.out.println("Invalid email or PIN");
