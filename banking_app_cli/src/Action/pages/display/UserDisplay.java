@@ -49,7 +49,7 @@ public class UserDisplay {
         };
         Arrays.stream(showDisplay).forEach(System.out::println);
         try{
-            System.out.println("Enter: ");
+            System.out.print("Enter: ");
             int userChoice = _SCAN.nextInt();
             lineBreakDisplay();
             return switch (userChoice) {

@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
+import static Action.pages.PageController.pageController;
 import static Action.pages.display.UserDisplay.authenticatedDisplay;
 import static Action.pages.display.UserDisplay.lineBreakDisplay;
 
@@ -45,7 +46,7 @@ public class LocalDatabase {
             System.out.println("Welcome, " + user.getNAME().toUpperCase());
             System.out.println("Current balance: " + user.get_BALANCE());
             lineBreakDisplay();
-            authenticatedDisplay();
+            pageController(authenticatedDisplay());
         } else {
             System.out.println("Invalid email or PIN");
         }
