@@ -1,7 +1,7 @@
 package Action;
 
-import static Action.display.UserDisplay.inputWarningDisplay;
-import static Action.display.UserDisplay.lineBreakDisplay;
+import static Action.pages.display.UserDisplay.inputWarningDisplay;
+import static Action.pages.display.UserDisplay.lineBreakDisplay;
 
 import java.util.Scanner;
 

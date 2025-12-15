@@ -1,6 +1,6 @@
 package Action;
 
-import static Action.display.UserDisplay.loginDisplay;
+import static Action.pages.display.UserDisplay.loginDisplay;
 
 public class Index {
     public static void index() {

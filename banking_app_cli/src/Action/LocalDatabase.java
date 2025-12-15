@@ -4,8 +4,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-import static Action.display.UserDisplay.authenticatedDisplay;
-import static Action.display.UserDisplay.lineBreakDisplay;
+import static Action.pages.display.UserDisplay.authenticatedDisplay;
+import static Action.pages.display.UserDisplay.lineBreakDisplay;
 
 public class LocalDatabase {
     public void users(String userAction) {
