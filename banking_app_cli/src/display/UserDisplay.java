@@ -9,23 +9,47 @@ public class UserDisplay {
         String[] showDisplay = {
                 "==========================================================================",
                 "||                                  || Choose an action:                ||",
-                "||        WELCOME TO LEO BANK       ||            [1] Admin             ||",
-                "|| -- 10k mo gawin nating 10k ko -- ||            [2] Client            ||",
-                "||                                  ||            [3] Exit              ||",
+                "||        WELCOME TO LEO BANK       ||        [1] Admin Login           ||",
+                "|| -- 10k mo gawin nating 10k ko -- ||        [2] Client Login          ||",
+                "||                                  ||        [3] Exit                  ||",
                 "==========================================================================",
         };
         Arrays.stream(showDisplay).forEach(System.out::println);
         try{
-            System.out.print("Enter: ");
+            System.out.print("ENTER: ");
             int userChoice = _SCAN.nextInt();
+            lineBreakDisplay();
             return switch (userChoice) {
                 case 1 -> "A";
                 case 2 -> "C";
                 default -> "";
             };
         }catch (Exception InputMismatchException){
-            System.out.println("-- WRONG INPUT -- Please try again --");
+            inputWarningDisplay();
             return "";
+        }
+    }
+    public static void lineBreakDisplay(){
+        System.out.println("==========================================================================");
+    }
+    public static void inputWarningDisplay(){
+        System.out.println("-- WRONG INPUT -- Please try again --");
+    }
+    public static void authenticatedDisplay(){
+        String[] showDisplay = {
+                "==========================================================================",
+                "||                                  || Choose an action:                ||",
+                "||        WELCOME TO LEO BANK       ||        [1] Admin Login           ||",
+                "|| -- 10k mo gawin nating 10k ko -- ||        [2] Client Login          ||",
+                "||                                  ||        [3] Exit                  ||",
+                "==========================================================================",
+        };
+        Arrays.stream(showDisplay).forEach(System.out::println);
+        try{
+            System.out.println("Enter: ");
+            int userChoice = _SCAN.nextInt();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
