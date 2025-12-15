@@ -58,11 +58,17 @@ public class UserDisplay {
                 case 3 -> 3;
                 case 4 -> 4;
                 case 5 -> 5;
-                default -> 0;
+                default -> repeat();
             };
         } catch (Exception InputMismatchException) {
             inputWarningDisplay();
             return 0;
         }
+    }
+    static int repeat(){
+        System.out.print("Would you like to continue? y/n: ");
+        String repeat = _SCAN.next();
+        if(repeat.equalsIgnoreCase("y")) return 1;
+        else return 0;
     }
 }

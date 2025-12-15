@@ -9,7 +9,7 @@ import static Action.pages.display.UserDisplay.authenticatedDisplay;
 import static Action.pages.display.UserDisplay.lineBreakDisplay;
 
 public class LocalDatabase {
-    public void users(String userAction) {
+    public static void users(String userAction) {
     ArrayList<UserType> users = new ArrayList<>();
         users.add(new UserType("Admin", new ArrayList<UserDetails>(){{
             add(new UserDetails("Admin1", "admin1@gmail.com", 432432, 0));
@@ -46,7 +46,10 @@ public class LocalDatabase {
             System.out.println("Welcome, " + user.getNAME().toUpperCase());
             System.out.println("Current balance: " + user.get_BALANCE());
             lineBreakDisplay();
-            pageController(authenticatedDisplay());
+            while (true){
+                /*pageController(userChoice);*/
+                if(authenticatedDisplay() == 0) break;
+            }
         } else {
             System.out.println("Invalid email or PIN");
         }
