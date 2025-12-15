@@ -1,8 +1,7 @@
-import static display.UserDisplay.loginDisplay;
+import static Action.Index.index;
 
 public class Main {
     public static void main(String[] args) {
-        LocalDatabase localDatabase = new LocalDatabase();
-        localDatabase.users(loginDisplay());
+        index();
     }
 }

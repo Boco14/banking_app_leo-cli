@@ -1,9 +1,11 @@
+package Action;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-import static display.UserDisplay.lineBreakDisplay;
+import static Action.display.UserDisplay.authenticatedDisplay;
+import static Action.display.UserDisplay.lineBreakDisplay;
 
 public class LocalDatabase {
     public void users(String userAction) {
@@ -24,9 +26,11 @@ public class LocalDatabase {
             add(new UserDetails("Eve", "eve@gmail.com", 556677, 300_000));
             add(new UserDetails("Frank", "frank@gmail.com", 667788, 850_000));
         }}));
+
         LoginUser.userLoginPrompt();
         String inputEmail = LoginUser.getEmailLogin();
         int inputPin = LoginUser.getPassword();
+
         Optional<UserDetails> loggedInUser =
                 users.stream()
                         .flatMap(userType -> userType.getUSER_LIST().stream())
@@ -35,20 +39,22 @@ public class LocalDatabase {
                                         user.getPIN() == inputPin
                         )
                         .findFirst();
-
         if (loggedInUser.isPresent()) {
             UserDetails user = loggedInUser.get();
             System.out.println("Login successful!");
             System.out.println("Welcome, " + user.getNAME().toUpperCase());
+            System.out.println("Current balance: " + user.get_BALANCE());
             lineBreakDisplay();
+            authenticatedDisplay();
         } else {
             System.out.println("Invalid email or PIN");
         }
+
         /*String u = users.stream()
                 .filter(userType -> userType.getUSER_TYPE().startsWith(userAction))
                 .flatMap(userType -> userType.getUSER_LIST().stream())
                 .sorted()
-                .map(UserDetails::getNAME)
+                .map(Action.UserDetails::getNAME)
                 .collect(Collectors.joining(", "));
         System.out.println(u);*/
     }

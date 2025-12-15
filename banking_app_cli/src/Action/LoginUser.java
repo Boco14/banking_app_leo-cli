@@ -1,5 +1,7 @@
-import static display.UserDisplay.inputWarningDisplay;
-import static display.UserDisplay.lineBreakDisplay;
+package Action;
+
+import static Action.display.UserDisplay.inputWarningDisplay;
+import static Action.display.UserDisplay.lineBreakDisplay;
 
 import java.util.Scanner;
 
