@@ -10,7 +10,7 @@ public class LoginUser {
     private static  String email = "leo@gmail.com";
     private static int password = 12345;
     public static void userLoginPrompt(){
-        System.out.println("Enter correct credentials");
+        System.out.println("Enter your credentials");
         System.out.println("Enter email: leo@gmail.com");
         /*email = _SCAN.nextLine();*/
         try{
