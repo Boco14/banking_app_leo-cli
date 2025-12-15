@@ -1,14 +1,16 @@
 package Action;
 
+import Action.pages.CheckBalancePage;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
+import static Action.pages.CheckBalancePage.checkBalance;
 import static Action.pages.PageController.pageController;
-import static Action.pages.display.UserDisplay.authenticatedDisplay;
-import static Action.pages.display.UserDisplay.lineBreakDisplay;
+import static Action.pages.display.UserDisplay.*;
 
 public class LocalDatabase {
+    private static final Scanner _SCAN = new Scanner(System.in);
     public static void users(String userAction) {
     ArrayList<UserType> users = new ArrayList<>();
         users.add(new UserType("Admin", new ArrayList<UserDetails>(){{
@@ -40,6 +42,7 @@ public class LocalDatabase {
                                         user.getPIN() == inputPin
                         )
                         .findFirst();
+
         if (loggedInUser.isPresent()) {
             UserDetails user = loggedInUser.get();
             System.out.println("Login successful!");
@@ -48,7 +51,41 @@ public class LocalDatabase {
             boolean repeat = true;
             while (repeat){
                 authenticatedDisplay();
-                if(pageController() == 0) repeat = false;
+                try{
+                    System.out.print("ENTER: ");
+                    int userChoice = _SCAN.nextInt();
+                    switch (userChoice) {
+                        case 1:
+                            lineBreakDisplay();
+                            CheckBalancePage checkBalancePage = new CheckBalancePage(user.getNAME(), user.get_BALANCE());
+                            checkBalance();
+                            break;
+                        case 2:
+                            lineBreakDisplay();
+                            System.out.println("Option 2");
+                            break;
+                        case 3:
+                            lineBreakDisplay();
+                            System.out.println("Option 3");
+                            break;
+                        case 4:
+                            lineBreakDisplay();
+                            System.out.println("Option 4");
+                            break;
+                        case 5:
+                            lineBreakDisplay();
+                            System.out.println("Option 5");
+                            break;
+                        default:
+                            lineBreakDisplay();
+                            System.out.print("CONFIRM, EXIT \nEnter y/n: ");
+                            String askRepeat = _SCAN.next();
+                            if(!askRepeat.equalsIgnoreCase("y")) repeat = true;
+                            else repeat = false;
+                    }
+                } catch (Exception InputMismatchException) {
+                    inputWarningDisplay();
+                }
             }
         } else {
             System.out.println("Invalid email or PIN");
