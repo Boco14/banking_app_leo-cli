@@ -1,18 +1,14 @@
 package Action.pages;
-
 import java.util.Scanner;
-
 import static Action.pages.CheckBalancePage.checkBalance;
 import static Action.pages.display.UserDisplay.inputWarningDisplay;
-import static Action.pages.display.UserDisplay.lineBreakDisplay;
 
 public class PageController {
     private static final Scanner _SCAN = new Scanner(System.in);
     public static int pageController(){
         try{
-            System.out.print("Enter: ");
+            System.out.print("ENTER: ");
             int userChoice = _SCAN.nextInt();
-            lineBreakDisplay();
             switch (userChoice) {
                 case 1: checkBalance(); return 1;
                 case 2: return 2;
