@@ -66,9 +66,9 @@ public class UserDisplay {
         }
     }
     static int repeat(){
-        System.out.print("Would you like to continue? y/n: ");
+        System.out.print("Confirm, EXIT \nEnter y/n: ");
         String repeat = _SCAN.next();
-        if(repeat.equalsIgnoreCase("y")) return 1;
+        if(!repeat.equalsIgnoreCase("y")) return 1;
         else return 0;
     }
 }
