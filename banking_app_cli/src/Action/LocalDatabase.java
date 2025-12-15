@@ -12,6 +12,7 @@ import static Action.pages.display.UserDisplay.*;
 public class LocalDatabase {
     private static final Scanner _SCAN = new Scanner(System.in);
     public static void users(String userAction) {
+    // Data sets of type users
     ArrayList<UserType> users = new ArrayList<>();
         users.add(new UserType("Admin", new ArrayList<UserDetails>(){{
             add(new UserDetails("Admin1", "admin1@gmail.com", 432432, 0));
@@ -30,10 +31,12 @@ public class LocalDatabase {
             add(new UserDetails("Frank", "frank@gmail.com", 667788, 850_000));
         }}));
 
+        // User input assignment
         LoginUser.userLoginPrompt();
         String inputEmail = LoginUser.getEmailLogin();
         int inputPin = LoginUser.getPassword();
 
+        // This the login validator
         Optional<UserDetails> loggedInUser =
                 users.stream()
                         .flatMap(userType -> userType.getUSER_LIST().stream())
@@ -43,6 +46,7 @@ public class LocalDatabase {
                         )
                         .findFirst();
 
+        // This the page controller
         if (loggedInUser.isPresent()) {
             UserDetails user = loggedInUser.get();
             System.out.println("Login successful!");
@@ -101,6 +105,7 @@ public class LocalDatabase {
     }
 }
 
+// User details object
 class UserDetails implements Comparable<UserDetails>{
     private final String _NAME;
     private final String _EMAIL;
@@ -122,6 +127,7 @@ class UserDetails implements Comparable<UserDetails>{
     }
 }
 
+// User type object
 class UserType{
     private final String _USER_TYPE;
     private final ArrayList<UserDetails> _USER_LIST;
