@@ -2,7 +2,7 @@ package Action.pages;
 
 import java.util.Scanner;
 
-public class WithdrawMoney {
+public class WithdrawMoneyPage {
     private static final Scanner SCAN = new Scanner(System.in);
 
     public static int withdrawMoney() {

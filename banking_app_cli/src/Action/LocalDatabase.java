@@ -2,13 +2,11 @@ package Action;
 
 import Action.pages.CheckBalancePage;
 import Action.pages.DepositMoneyPage;
-import Action.pages.WithdrawMoney;
-
-import org.jetbrains.annotations.NotNull;
+import Action.pages.WithdrawMoneyPage;
+import Action.pages.UpdateProfilePage;
 
 import java.util.*;
 
-import static Action.pages.CheckBalancePage.checkBalance;
 import static Action.pages.display.UserDisplay.*;
 
 public class LocalDatabase {
@@ -86,7 +84,7 @@ public class LocalDatabase {
                         case 3:
                             // Withdraw money
                             lineBreakDisplay();
-                            int withdrawAmount = WithdrawMoney.withdrawMoney();
+                            int withdrawAmount = WithdrawMoneyPage.withdrawMoney();
                             if (withdrawAmount <= 0) {
                                 System.out.println("Invalid withdraw amount.");
                                 break;
@@ -109,7 +107,9 @@ public class LocalDatabase {
                         case 5:
                             // Update user profile
                             lineBreakDisplay();
+                            UpdateProfilePage.updateProfile(user);
                             break;
+
 
                         default:
                             repeat = false;
