@@ -1,12 +1,12 @@
 package Action;
 
 import Action.pages.CheckBalancePage;
+import Action.pages.DepositMoneyPage;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
 import static Action.pages.CheckBalancePage.checkBalance;
-import static Action.pages.PageController.pageController;
 import static Action.pages.display.UserDisplay.*;
 
 public class LocalDatabase {
@@ -64,11 +64,22 @@ public class LocalDatabase {
                     switch (userChoice) {
                         case 1:
                             lineBreakDisplay();
-                            CheckBalancePage checkBalancePage = new CheckBalancePage(user.getNAME(), user.get_BALANCE());
-                            checkBalance();
+                            CheckBalancePage.checkBalance(user);
                             break;
 
                         case 2:
+                            lineBreakDisplay();
+                            int depositAmount = DepositMoneyPage.depositMoney();
+                            if (depositAmount <= 0) {
+                                System.out.println("Invalid deposit amount.");
+                                break;
+                            }
+                            user.addBalance(depositAmount);
+                            System.out.println("You have successfully deposited: " + depositAmount);
+                            System.out.println("New balance: " + user.get_BALANCE());
+                            break;
+
+                        case 4:
                             lineBreakDisplay();
                             transferMoney(user, users);
                             break;
@@ -139,49 +150,6 @@ public class LocalDatabase {
         System.out.println("New balance: " + sender.get_BALANCE());
     }
 
-}
-
-// User details object
-class UserDetails implements Comparable<UserDetails>{
-    private final String _NAME;
-    private final String _EMAIL;
-    private final int _PIN;
-    private int _BALANCE;
-    UserDetails(final String _NAME, final String _EMAIL, final int _PIN, int _BALANCE){
-        this._NAME = _NAME;
-        this._EMAIL = _EMAIL;
-        this._PIN = _PIN;
-        this._BALANCE = _BALANCE;
-    }
-    public String getNAME() { return _NAME; }
-    public String getEMAIL() { return _EMAIL; }
-    public int getPIN() { return _PIN; }
-    public int get_BALANCE() { return _BALANCE; }
-
-    public void deductBalance(int amount) {
-        this._BALANCE -= amount;
-    }
-
-    public void addBalance(int amount) {
-        this._BALANCE += amount;
-    }
-
-
-    public int compareTo(@NotNull UserDetails o) {
-        return this.getNAME().compareTo(o.getNAME());
-    }
-}
-
-// User type object
-class UserType{
-    private final String _USER_TYPE;
-    private final ArrayList<UserDetails> _USER_LIST;
-    UserType(final String _USER_TYPE, final ArrayList<UserDetails> _USER_LIST){
-        this._USER_TYPE = _USER_TYPE;
-        this._USER_LIST = _USER_LIST;
-    }
-    public String getUSER_TYPE() { return _USER_TYPE; }
-    public ArrayList<UserDetails> getUSER_LIST() { return _USER_LIST; }
 }
 
 
