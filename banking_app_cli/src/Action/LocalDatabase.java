@@ -2,6 +2,8 @@ package Action;
 
 import Action.pages.CheckBalancePage;
 import Action.pages.DepositMoneyPage;
+import Action.pages.WithdrawMoney;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -63,11 +65,13 @@ public class LocalDatabase {
 
                     switch (userChoice) {
                         case 1:
+                            // Check balance
                             lineBreakDisplay();
                             CheckBalancePage.checkBalance(user);
                             break;
 
                         case 2:
+                            // Deposit money
                             lineBreakDisplay();
                             int depositAmount = DepositMoneyPage.depositMoney();
                             if (depositAmount <= 0) {
@@ -79,9 +83,32 @@ public class LocalDatabase {
                             System.out.println("New balance: " + user.get_BALANCE());
                             break;
 
+                        case 3:
+                            // Withdraw money
+                            lineBreakDisplay();
+                            int withdrawAmount = WithdrawMoney.withdrawMoney();
+                            if (withdrawAmount <= 0) {
+                                System.out.println("Invalid withdraw amount.");
+                                break;
+                            }
+                            if (withdrawAmount > user.get_BALANCE()) {
+                                System.out.println("Insufficient balance.");
+                                break;
+                            }
+                            user.deductBalance(withdrawAmount);
+                            System.out.println("You have successfully withdrawn: " + withdrawAmount);
+                            System.out.println("New balance: " + user.get_BALANCE());
+                            break;
+
                         case 4:
+                            // Transfer Money
                             lineBreakDisplay();
                             transferMoney(user, users);
+                            break;
+
+                        case 5:
+                            // Update user profile
+                            lineBreakDisplay();
                             break;
 
                         default:
