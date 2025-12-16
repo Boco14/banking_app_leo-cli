@@ -46,49 +46,39 @@ public class LocalDatabase {
                         )
                         .findFirst();
 
-        // This the page controller
+// page controller
         if (loggedInUser.isPresent()) {
             UserDetails user = loggedInUser.get();
+
             System.out.println("Login successful!");
             System.out.println("Welcome, " + user.getNAME().toUpperCase());
             System.out.println("Current balance: " + user.get_BALANCE());
+
             boolean repeat = true;
-            while (repeat){
+            while (repeat) {
                 authenticatedDisplay();
-                try{
+                try {
                     System.out.print("ENTER: ");
                     int userChoice = _SCAN.nextInt();
+
                     switch (userChoice) {
                         case 1:
                             lineBreakDisplay();
                             CheckBalancePage checkBalancePage = new CheckBalancePage(user.getNAME(), user.get_BALANCE());
                             checkBalance();
                             break;
+
                         case 2:
                             lineBreakDisplay();
-                            System.out.println("Option 2");
+                            transferMoney(user, users);
                             break;
-                        case 3:
-                            lineBreakDisplay();
-                            System.out.println("Option 3");
-                            break;
-                        case 4:
-                            lineBreakDisplay();
-                            System.out.println("Option 4");
-                            break;
-                        case 5:
-                            lineBreakDisplay();
-                            System.out.println("Option 5");
-                            break;
+
                         default:
-                            lineBreakDisplay();
-                            System.out.print("CONFIRM, EXIT \nEnter y/n: ");
-                            String askRepeat = _SCAN.next();
-                            if(!askRepeat.equalsIgnoreCase("y")) repeat = true;
-                            else repeat = false;
+                            repeat = false;
                     }
-                } catch (Exception InputMismatchException) {
+                } catch (InputMismatchException e) {
                     inputWarningDisplay();
+                    _SCAN.nextLine(); // clear buffer
                 }
             }
         } else {
@@ -103,6 +93,52 @@ public class LocalDatabase {
                 .collect(Collectors.joining(", "));
         System.out.println(u);*/
     }
+    public static void transferMoney(
+            UserDetails sender,
+            ArrayList<UserType> users
+    ) {
+        System.out.print("Enter receiver email: ");
+        String receiverEmail = _SCAN.next();
+
+        if (sender.getEMAIL().equalsIgnoreCase(receiverEmail)) {
+            System.out.println("You cannot send money to yourself.");
+            return;
+        }
+
+        Optional<UserDetails> receiverOpt =
+                users.stream()
+                        .flatMap(userType -> userType.getUSER_LIST().stream())
+                        .filter(u -> u.getEMAIL().equalsIgnoreCase(receiverEmail))
+                        .findFirst();
+
+        if (receiverOpt.isEmpty()) {
+            System.out.println("Receiver not found.");
+            return;
+        }
+
+        UserDetails receiver = receiverOpt.get();
+
+        System.out.print("Enter amount to send: ");
+        int amount = _SCAN.nextInt();
+
+        if (amount <= 0) {
+            System.out.println("Invalid amount.");
+            return;
+        }
+
+        if (sender.get_BALANCE() < amount) {
+            System.out.println("Insufficient balance.");
+            return;
+        }
+
+        sender.deductBalance(amount);
+        receiver.addBalance(amount);
+
+        System.out.println("Transfer successful!");
+        System.out.println("Sent to: " + receiver.getNAME());
+        System.out.println("New balance: " + sender.get_BALANCE());
+    }
+
 }
 
 // User details object
@@ -110,8 +146,8 @@ class UserDetails implements Comparable<UserDetails>{
     private final String _NAME;
     private final String _EMAIL;
     private final int _PIN;
-    private final Integer _BALANCE;
-    UserDetails(final String _NAME, final String _EMAIL, final int _PIN, final Integer _BALANCE){
+    private int _BALANCE;
+    UserDetails(final String _NAME, final String _EMAIL, final int _PIN, int _BALANCE){
         this._NAME = _NAME;
         this._EMAIL = _EMAIL;
         this._PIN = _PIN;
@@ -121,6 +157,15 @@ class UserDetails implements Comparable<UserDetails>{
     public String getEMAIL() { return _EMAIL; }
     public int getPIN() { return _PIN; }
     public int get_BALANCE() { return _BALANCE; }
+
+    public void deductBalance(int amount) {
+        this._BALANCE -= amount;
+    }
+
+    public void addBalance(int amount) {
+        this._BALANCE += amount;
+    }
+
 
     public int compareTo(@NotNull UserDetails o) {
         return this.getNAME().compareTo(o.getNAME());
