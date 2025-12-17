@@ -44,7 +44,7 @@ public class UserDisplay {
                 "||     [3] Withdraw Money                                               ||",
                 "||     [4] Transfer Money                                               ||",
                 "||     [5] Profile                                                      ||",
-                "||     [6] Exit                                                         ||",
+                "||     [6] Logout                                                       ||",
                 "==========================================================================",
         };
         Arrays.stream(showDisplay).forEach(System.out::println);
