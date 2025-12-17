@@ -62,6 +62,7 @@ public class LocalDatabase {
             System.out.println("\nLogin successful!");
             System.out.println("Welcome, " + user.getNAME().toUpperCase());
             System.out.println("Current balance: " + user.get_BALANCE());
+            System.out.println();
 
             // ================= AUTHENTICATED MENU =================
             boolean isLoggedIn = true;
@@ -130,9 +131,30 @@ public class LocalDatabase {
 
                         case 6:
                             // LOGOUT
-                            lineBreakDisplay();
-                            System.out.println("You have been logged out.\n");
-                            isLoggedIn = false;
+
+                            logoutDisplay();
+
+                            System.out.print("ENTER: ");
+                            try{
+                                int logout = _SCAN.nextInt();
+                                switch (logout){
+                                    case 1:
+                                        System.out.println("You have been logged out.\n");
+                                        isLoggedIn = false;
+                                        break;
+
+                                    case 2:
+                                        System.out.println("Program terminated. Goodbye!");
+                                        lineBreakDisplay();
+                                        System.exit(0);
+
+                                    default:
+                                        isLoggedIn = true;
+                                        break;
+                                }
+                            }catch (Exception InputMismatchException){
+                                inputWarningDisplay();
+                            }
                             break;
 
                         default:

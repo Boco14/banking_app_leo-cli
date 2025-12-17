@@ -49,4 +49,17 @@ public class UserDisplay {
         };
         Arrays.stream(showDisplay).forEach(System.out::println);
     }
+
+    public static void logoutDisplay(){
+
+        String[] logoutDisplay = {
+                "==========================================================================",
+                "|| Choose an action:                                                    ||",
+                "||     [0] Cancel                                                       ||",
+                "||     [1] Logout Account                                               ||",
+                "||     [2] Exit Program                                                 ||",
+                "==========================================================================",
+        };
+        Arrays.stream(logoutDisplay).forEach(System.out::println);
+    }
 }
