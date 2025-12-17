@@ -131,9 +131,7 @@ public class LocalDatabase {
 
                         case 6:
                             // LOGOUT
-
                             logoutDisplay();
-
                             System.out.print("ENTER: ");
                             try{
                                 int logout = _SCAN.nextInt();
